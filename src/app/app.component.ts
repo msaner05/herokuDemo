@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
 import { EmpServiceService } from './-emp-service.service';
+import { Employee } from './modules/modules.module';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  name: any;
+  empDetails: any = {};
   getAllEmps: any;
   title = 'herokudemo';
   constructor(private apiService: EmpServiceService) { }
@@ -19,8 +20,8 @@ export class AppComponent {
     });
   }
   postEmps(event) {
-    if (this.name) {
-      this.apiService.postInputEmps(this.name).subscribe((data) => {
+    if (this.empDetails) {
+      this.apiService.postInputEmps(this.empDetails).subscribe((data) => {
         this.getEmps();
       });
     }
