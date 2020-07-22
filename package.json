@@ -1,10 +1,6 @@
 {
   "name": "herokudemo",
   "version": "0.0.0",
-  "engines": {
-    "node": "6.11.1",
-    "npm": "3.10.9"
-  },
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
