@@ -18,9 +18,11 @@ export class AppComponent {
       this.getAllEmps = data;
     });
   }
-  postEmps(name) {
-    this.apiService.postInputEmps(name).subscribe((data) => {
-      this.getEmps();
-    });
+  postEmps() {
+    if (this.name) {
+      this.apiService.postInputEmps(this.name).subscribe((data) => {
+        this.getEmps();
+      });
+    }
   }
 }
