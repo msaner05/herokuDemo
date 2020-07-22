@@ -18,7 +18,7 @@ export class AppComponent {
       this.getAllEmps = data;
     });
   }
-  postEmps() {
+  postEmps(event) {
     if (this.name) {
       this.apiService.postInputEmps(this.name).subscribe((data) => {
         this.getEmps();
