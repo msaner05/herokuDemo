@@ -17,7 +17,7 @@ export class AppComponent {
 
   ngOnInit() {
     
-    this.getProj();
+    //this.getProj();
     const userId = 'user001';
     this.messagingService.requestPermission(userId)
     this.messagingService.receiveMessage()
@@ -25,12 +25,12 @@ export class AppComponent {
 
   }
 
-  getProj() {
-    this._masterservice.getAllProjects().subscribe((result) => {
-      console.log(result);
-    });
-  }
-}
+  // getProj() {
+  //   this._masterservice.getAllProjects().subscribe((result) => {
+  //     console.log(result);
+  //   });
+  // }
+ }
 
 
 // import { Component } from '@angular/core';

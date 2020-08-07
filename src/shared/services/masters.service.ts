@@ -40,36 +40,36 @@ export class MastersService {
     //private _toasterService: ToasterService,
     private _authTokenService: AuthTokenService) { }
 
-  getAllProjects(): any {
-    const ctl = this;
-    const url = Config.GetURL('/projectmasters');
-    this._spinnerService.show();
-    return this.authHttp.get7(url).pipe(
-      catchError((err: HttpErrorResponse) => {
-        this.handleCtlError(ctl, err);
-        return _throw(err);
-      })
-      , finalize(() => this._spinnerService.hide()));
-  }
+  // getAllProjects(): any {
+  //   const ctl = this;
+  //   const url = Config.GetURL('/api/projectmasters');
+  //   this._spinnerService.show();
+  //   return this.authHttp.get7(url).pipe(
+  //     catchError((err: HttpErrorResponse) => {
+  //     this.handleCtlError(ctl, err);
+  //       return _throw(err);
+  //     })
+  //     , finalize(() => this._spinnerService.hide()));
+  // }
 
   addTokens(payload: any) {
     const ctl = this;
-    const url = Config.GetURL('/pushnotifications');
+    const url = Config.GetURL('/api/pushnotifications');
     this._spinnerService.show();
     return this.authHttp.post(url, payload).pipe(
       catchError((err: HttpErrorResponse) => {
-        this.handleCtlError(ctl, err);
+      this.handleCtlError(ctl, err);
         return _throw(err);
       })
       , finalize(() => this._spinnerService.hide()));
   }
   getAllUserTokens(): any {
     const ctl = this;
-    const url = Config.GetURL('/pushnotifications');
+    const url = Config.GetURL('/api/pushnotifications');
     this._spinnerService.show();
     return this.authHttp.get7(url).pipe(
       catchError((err: HttpErrorResponse) => {
-        this.handleCtlError(ctl, err);
+       this.handleCtlError(ctl, err);
         return _throw(err);
       })
       , finalize(() => this._spinnerService.hide()));
@@ -99,7 +99,7 @@ export class MastersService {
         ctl._toasterService.showMessage('Please login again !', 'Login required', 'error');
         localStorage.clear();
         this._router.navigate(['/login']);
-      } else if (errorResponse.error.error.message == "Invalid current password") {
+      } else if (errorResponse.error.message == "Invalid current password") {
         ctl._toasterService.hide();
         ctl._toasterService.showMessage('Please enter right password !', 'Invalid current password', 'error');
       } else if (ctl._toasterService) {
