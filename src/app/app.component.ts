@@ -10,7 +10,7 @@ import { MastersService } from 'src/shared/services/masters.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'Notification POC';
+  title = 'Notifications POC';
   message;
 
   constructor(private messagingService: MessagingService, private _masterservice: MastersService) { }
