@@ -12,6 +12,7 @@ import { MastersService } from 'src/shared/services/masters.service';
 export class AppComponent {
   title = 'Notifications POC';
   message;
+  
 
   constructor(private messagingService: MessagingService, private _masterservice: MastersService) { }
 
