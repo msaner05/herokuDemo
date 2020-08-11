@@ -7,6 +7,10 @@ import { take } from 'rxjs/operators';
 import { BehaviorSubject } from 'rxjs'
 import { PushNotification } from 'src/shared/modules/modules.module';
 import { MastersService } from 'src/shared/services/masters.service';
+import { PushnotificationsServiceService } from '../pushnotifications-service.service';
+
+
+
 
 
 @Injectable({
@@ -20,7 +24,8 @@ export class MessagingService {
 
   constructor(private angularFireDB: AngularFireDatabase,
     private angularFireAuth: AngularFireAuth,
-    private angularFireMessaging: AngularFireMessaging, private _masterservice: MastersService) {
+    private angularFireMessaging: AngularFireMessaging, private _masterservice: MastersService,
+    private _pushnotification: PushnotificationsServiceService) {
     this.angularFireMessaging.messages.subscribe(
       (_messaging) => {
         //_messaging.onMessage = _messaging.onMessage.bind(_messaging);
@@ -28,7 +33,7 @@ export class MessagingService {
       }
     )
   }
- 
+
   /**
 * update token in firebase database
 * 
@@ -48,18 +53,16 @@ export class MessagingService {
     _notifications.token = token;
     _notifications.employeeid = 3;
 
-    this._masterservice.getAllUserTokens().subscribe(tokenId => {
-      console.log(tokenId);
+    this._pushnotification.getAllToken().subscribe((tokenId: Array<any>)=> {
       let checkDuplicateToken = tokenId.filter(userToken => userToken.token == token);
       if (checkDuplicateToken.length == 0) {
-        this._masterservice.addTokens(_notifications).subscribe(result => {
+        this._pushnotification.postNewToken(_notifications).subscribe((result: Array<any>) => {
           if (result) {
-            
+
           }
         });
       }
     });
-
   }
 
   /**
