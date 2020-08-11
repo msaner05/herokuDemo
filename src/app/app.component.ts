@@ -1,7 +1,6 @@
 
 import { Component } from '@angular/core';
 import { MessagingService } from "./shared/messaging.service";
-import { MastersService } from 'src/shared/services/masters.service';
 import { EmpServiceService } from './-emp-service.service';
 import { Employee } from './modules/modules.module';
 
@@ -17,7 +16,7 @@ export class AppComponent {
   message;
 
 
-  constructor(private messagingService: MessagingService, private _masterservice: MastersService, private apiService: EmpServiceService) { }
+  constructor(private messagingService: MessagingService, private apiService: EmpServiceService) { }
 
   ngOnInit() {
     

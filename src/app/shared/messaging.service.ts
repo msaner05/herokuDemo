@@ -6,7 +6,6 @@ import { mergeMapTo } from 'rxjs/operators';
 import { take } from 'rxjs/operators';
 import { BehaviorSubject } from 'rxjs'
 import { PushNotification } from 'src/shared/modules/modules.module';
-import { MastersService } from 'src/shared/services/masters.service';
 import { PushnotificationsServiceService } from '../pushnotifications-service.service';
 
 
@@ -24,7 +23,7 @@ export class MessagingService {
 
   constructor(private angularFireDB: AngularFireDatabase,
     private angularFireAuth: AngularFireAuth,
-    private angularFireMessaging: AngularFireMessaging, private _masterservice: MastersService,
+    private angularFireMessaging: AngularFireMessaging,
     private _pushnotification: PushnotificationsServiceService) {
     this.angularFireMessaging.messages.subscribe(
       (_messaging) => {

@@ -1,12 +1,9 @@
 
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { SpinnerComponent } from 'src/shared/spinner/spinner.component';
-import { AuthHttp } from 'src/shared/services/authHTTP.service';
 import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -17,14 +14,12 @@ import { AngularFireModule } from '@angular/fire';
 import { MessagingService } from './shared/messaging.service';
 import { environment } from '../environments/environment';
 import { AsyncPipe } from '../../node_modules/@angular/common';
-import { MastersService } from 'src/shared/services/masters.service';
-import { AuthTokenService } from 'src/shared/services/authToken.service';
-import { SpinnerService } from 'src/shared/spinner/spinner.service';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    SpinnerComponent
+    AppComponent
+    
   ],
   imports: [
     BrowserModule,
@@ -37,7 +32,7 @@ import { SpinnerService } from 'src/shared/spinner/spinner.service';
     HttpModule,
     HttpClientModule
   ],
-  providers: [MessagingService, AsyncPipe, MastersService, AuthHttp, AuthTokenService, SpinnerService,],
+  providers: [MessagingService, AsyncPipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
