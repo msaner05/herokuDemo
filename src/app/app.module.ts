@@ -1,6 +1,7 @@
 
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -30,7 +31,9 @@ import { FormsModule } from '@angular/forms';
     AngularFireMessagingModule,
     AngularFireModule.initializeApp(environment.firebase),
     HttpModule,
-    HttpClientModule
+    HttpClientModule,
+    ServiceWorkerModule.register('/ngsw-worker.js', 
+        { enabled: environment.production }),
   ],
   providers: [MessagingService, AsyncPipe],
   bootstrap: [AppComponent]
