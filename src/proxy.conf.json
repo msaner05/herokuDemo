@@ -1,0 +1,7 @@
+{
+    "/api/*": {
+        "target": "https://herokutoazure-apidemo.herokuapp.com",
+        "secure": false,
+        "logLevel": "debug"
+    }
+}
