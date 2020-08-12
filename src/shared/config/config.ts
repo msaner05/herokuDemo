@@ -12,7 +12,7 @@ export class Config {
 
          /**Localhost */
 
-          const baseURL = 'https://herokutoazure-apidemo.herokuapp.com/';
+          const baseURL = 'http://localhost:3000';
 
         return baseURL + apiURL;
     }
