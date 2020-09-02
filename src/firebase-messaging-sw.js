@@ -7,7 +7,7 @@ firebase.initializeApp({
   'messagingSenderId': '380867304054',
 });
 
-const messaging = firebase.messaging();
+// const messaging = firebase.messaging();
 
 
 // if(navigator.serviceWorker){
