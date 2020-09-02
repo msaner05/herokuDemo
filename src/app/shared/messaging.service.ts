@@ -27,8 +27,8 @@ export class MessagingService {
     private _pushnotification: PushnotificationsServiceService) {
     this.angularFireMessaging.messages.subscribe(
       (_messaging) => {
-        //_messaging.onMessage = _messaging.onMessage.bind(_messaging);
-        //_messaging.onTokenRefresh = _messaging.onTokenRefresh.bind(_messaging);
+        // _messaging.onMessage = _messaging.onMessage.bind(_messaging);
+        // _messaging.onTokenRefresh = _messaging.onTokenRefresh.bind(_messaging);
       }
     )
   }
@@ -73,7 +73,7 @@ export class MessagingService {
     this.angularFireMessaging.requestToken.subscribe(
       (token) => {
         console.log(token);
-        this.updateToken(userId, token);
+        // this.updateToken(userId, token);
       },
       (err) => {
         console.error('Unable to get permission to notify.', err);
