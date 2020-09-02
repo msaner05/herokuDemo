@@ -5,14 +5,14 @@
 export const environment = {
   production: true,
   firebase: {
-    apiKey: "AIzaSyC_vNfvnni0876y0iHoC29IPUI8lf7WiLc",
-    authDomain: "hrmsnotification-3a10f.firebaseapp.com",
-    databaseURL: "https://hrmsnotification-3a10f.firebaseio.com",
-    projectId: "hrmsnotification-3a10f",
-    storageBucket: "hrmsnotification-3a10f.appspot.com",
-    messagingSenderId: "417755979900",
-    appId: "1:417755979900:web:a194861e7c546f007469f9",
-    measurementId: "G-5F4Q9EWMTV"
+    apiKey: "AIzaSyBXIhq6NxzcnAW9BeKg-6OFyuEFw-3icdA",
+    authDomain: "notifications-de6a6.firebaseapp.com",
+    databaseURL: "https://notifications-de6a6.firebaseio.com",
+    projectId: "notifications-de6a6",
+    storageBucket: "notifications-de6a6.appspot.com",
+    messagingSenderId: "380867304054",
+    appId: "1:380867304054:web:e14f03d7f77bc774fc5d57",
+    measurementId: "G-3GGZCLG3DK"
   }
 };
 
