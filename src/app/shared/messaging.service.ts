@@ -19,7 +19,7 @@ export class MessagingService {
   _notifications: PushNotification;
   currentMessage = new BehaviorSubject(null);
   userTokens: any = [];
-
+token: any;
 
   constructor(private angularFireDB: AngularFireDatabase,
     private angularFireAuth: AngularFireAuth,
@@ -27,8 +27,12 @@ export class MessagingService {
     private _pushnotification: PushnotificationsServiceService) {
     this.angularFireMessaging.messages.subscribe(
       (_messaging) => {
+console.log('_messaging-----',_messaging);
         // _messaging.onMessage = _messaging.onMessage.bind(_messaging);
         // _messaging.onTokenRefresh = _messaging.onTokenRefresh.bind(_messaging);
+      },
+      (err) => {
+console.log('in error----',err);
       }
     )
   }
@@ -39,30 +43,42 @@ export class MessagingService {
 * @param userId userId as a key 
 * @param token token as a value
 */
-  updateToken(userId, token) {
-    // we can change this function to request our backend service
-    this.angularFireAuth.authState.pipe(take(1)).subscribe(
-      () => {
-        const data = {};
-        data[userId] = token
-        this.angularFireDB.object('fcmTokens/').update(data)
-      })
 
-    let _notifications: PushNotification = new PushNotification();
-    _notifications.token = token;
-    _notifications.employeeid = 3;
+updateToken(userId, token) {
+  // we can change this function to request our backend service
+  this.angularFireAuth.authState.pipe(take(1)).subscribe(
+    () => {
+      const data = {};
+      data[userId] = token
+      this.angularFireDB.object('fcmTokens/').update(data)
+    })
+}
 
-    this._pushnotification.getAllToken().subscribe((tokenId: Array<any>)=> {
-      let checkDuplicateToken = tokenId.filter(userToken => userToken.token == token);
-      if (checkDuplicateToken.length == 0) {
-        this._pushnotification.postNewToken(_notifications).subscribe((result: Array<any>) => {
-          if (result) {
 
-          }
-        });
-      }
-    });
-  }
+  // updateToken(userId, token) {
+  //   // we can change this function to request our backend service
+  //   this.angularFireAuth.authState.pipe(take(1)).subscribe(
+  //     () => {
+  //       const data = {};
+  //       data[userId] = token
+  //       this.angularFireDB.object('fcmTokens/').update(data)
+  //     })
+
+  //   let _notifications: PushNotification = new PushNotification();
+  //   _notifications.token = token;
+  //   _notifications.employeeid = 3;
+
+  //   this._pushnotification.getAllToken().subscribe((tokenId: Array<any>)=> {
+  //     let checkDuplicateToken = tokenId.filter(userToken => userToken.token == token);
+  //     if (checkDuplicateToken.length == 0) {
+  //       this._pushnotification.postNewToken(_notifications).subscribe((result: Array<any>) => {
+  //         if (result) {
+
+  //         }
+  //       });
+  //     }
+  //   });
+  // }
 
   /**
    * request permission for notification from firebase cloud messaging
@@ -73,13 +89,27 @@ export class MessagingService {
     this.angularFireMessaging.requestToken.subscribe(
       (token) => {
         console.log(token);
-        // this.updateToken(userId, token);
+        this.token= token;
+        this.updateToken(userId, token);
+        // return token;
       },
       (err) => {
         console.error('Unable to get permission to notify.', err);
       }
     );
   }
+  // requestPermission(userId) {
+  //   this.angularFireMessaging.requestToken.subscribe(
+  //     (token) => {
+  //       console.log(token);
+  //       return token;
+  //       // this.updateToken(userId, token);
+  //     },
+  //     (err) => {
+  //       console.error('Unable to get permission to notify.', err);
+  //     }
+  //   );
+  // }
 
   /**
    * hook method when new notification received in foreground

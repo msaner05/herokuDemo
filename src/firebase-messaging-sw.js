@@ -6,12 +6,33 @@ importScripts('https://www.gstatic.com/firebasejs/5.5.0/firebase-messaging.js');
 firebase.initializeApp({
   'messagingSenderId': '380867304054',
 });
-// firebase.messaging();
+// // firebase.messaging();
 const messaging = firebase.messaging();
 // messaging.onMessage((payload) => {
 //   console.log('Message received. ', payload);
+//   // ...
 // });
-// self.addEventListener("push", payload => { console.log('Push Received.' ,payload);})
+// messaging.onMessage((payload) => {
+//   console.log('Message received. ', payload);
+//   // [START_EXCLUDE]
+//   // Update the UI to include the received message.
+//   appendMessage(payload);
+//   // [END_EXCLUDE]
+// });
+// function appendMessage(payload) {
+//   const messagesElement = document.querySelector('#messages');
+//   const dataHeaderELement = document.createElement('h5');
+//   const dataElement = document.createElement('pre');
+//   dataElement.style = 'overflow-x:hidden;';
+//   dataHeaderELement.textContent = 'Received message:';
+//   dataElement.textContent = JSON.stringify(payload, null, 2);
+//   messagesElement.appendChild(dataHeaderELement);
+//   messagesElement.appendChild(dataElement);
+// }
+// messaging.onMessage((payload) => {
+//   console.log('Message received. ', payload);
+// });
+self.addEventListener("push", payload => { console.log('Push Received.' ,payload);})
 messaging.setBackgroundMessageHandler(function(payload) {
   console.log('[firebase-messaging-sw.js] Received background message ', payload);
   // Customize notification here

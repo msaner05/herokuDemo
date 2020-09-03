@@ -48,15 +48,16 @@ export class AppComponent {
   empDetails: any = {};
   getAllEmps: any;
   message;
+  token: any;
 
 
   constructor(private messagingService: MessagingService, private apiService: EmpServiceService) { }
 
   ngOnInit() {   
     const userId = 'user001';
-    this.messagingService.requestPermission(userId)
-    // this.messagingService.receiveMessage()
-    // this.message = this.messagingService.currentMessage
+   this.token = this.messagingService.requestPermission(userId);
+    this.messagingService.receiveMessage()
+    this.message = this.messagingService.currentMessage
     this.getEmps();
   }
 
@@ -66,9 +67,23 @@ export class AppComponent {
     });
   }
   postEmps(event) {
+    this.messagingService.token
+    let NotificationData= { 
+      "notification": {
+       "title": "Hello World", 
+       "body": "This is Message from Admin"
+      },
+      "to" : this.messagingService.token
+      }
     if (this.empDetails) {
       this.apiService.postInputEmps(this.empDetails).subscribe((data) => {
         this.getEmps();
+      });
+      this.apiService.postNotification(NotificationData).subscribe((response) => {
+       console.log('response---',response);
+      },
+      (error) => {
+        console.log('error---',error);
       });
     }
   }
