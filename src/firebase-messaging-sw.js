@@ -8,9 +8,10 @@ firebase.initializeApp({
 });
 // firebase.messaging();
 const messaging = firebase.messaging();
-messaging.onMessage((payload) => {
-  console.log('Message received. ', payload);
-});
+// messaging.onMessage((payload) => {
+//   console.log('Message received. ', payload);
+// });
+self.addEventListener("push", payload => { console.log('Push Received.' ,payload);})
 // if ('serviceWorker' in navigator) {
 //   navigator.serviceWorker.register('../firebase-messaging-sw.js')
 //     .then(function(registration) {
