@@ -52,6 +52,20 @@ updateToken(userId, token) {
       data[userId] = token
       this.angularFireDB.object('fcmTokens/').update(data)
     })
+    let _notifications: PushNotification = new PushNotification();
+    _notifications.token = token;
+    _notifications.employeeid = 3;
+
+    this._pushnotification.getAllToken().subscribe((tokenId: Array<any>)=> {
+      let checkDuplicateToken = tokenId.filter(userToken => userToken.token == token);
+      if (checkDuplicateToken.length == 0) {
+        this._pushnotification.postNewToken(_notifications).subscribe((result: Array<any>) => {
+          if (result) {
+
+          }
+        });
+      }
+    });
 }
 
 
