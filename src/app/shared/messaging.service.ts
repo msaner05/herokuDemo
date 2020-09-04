@@ -118,6 +118,7 @@ updateToken(userId, token) {
     this.angularFireMessaging.messages.subscribe(
       (payload) => {
         console.log("new message received. ", payload);
+        alert("Data Added Successfully");
         this.currentMessage.next(payload);
       })
   }

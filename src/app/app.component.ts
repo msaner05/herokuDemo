@@ -37,7 +37,6 @@
 import { Component } from '@angular/core';
 import { MessagingService } from "./shared/messaging.service";
 import { EmpServiceService } from './-emp-service.service';
-import { Employee } from './modules/modules.module';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -67,13 +66,13 @@ export class AppComponent {
     });
   }
   postEmps(event) {
-    this.messagingService.token
     let NotificationData= { 
       "notification": {
-       "title": "Hello World", 
-       "body": "This is Message from Admin"
+       "title": "Data Added", 
+       "body": "Data Added Successfully",
+       "icon": '../assets/icons/adduser.png'
       },
-      "to" : this.messagingService.token
+      "registration_ids" : [this.messagingService.token]
       }
     if (this.empDetails) {
       this.apiService.postInputEmps(this.empDetails).subscribe((data) => {
