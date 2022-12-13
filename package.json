@@ -29,7 +29,7 @@
     "@angular/platform-browser-dynamic": "~8.2.0",
     "@angular/router": "~8.2.0",
     "@angular/service-worker": "^5.2.9",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "firebase": "^7.17.1",
     "npm-check-updates": "^7.0.2",
     "path": "^0.12.7",
